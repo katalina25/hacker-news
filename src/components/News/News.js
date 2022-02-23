@@ -3,24 +3,27 @@ import styles from './News.module.css'
 import { FaRegClock, FaHeart, FaRegHeart } from 'react-icons/fa';
 
 
-const News = ({ title, creation_time, author }) => {
+const News = ({ title, creation_time, author, url }) => {
     if (!title) {
         return '';
     }
+    const handleClick = (url) => {
+        window.open(url);
+    }
     return (
-        <div className={styles.cards}>
-            <div className={styles.colLeft}>
+        <div className={styles.cards} >
+            <div className={styles.colLeft} onClick={() => handleClick(url)}>
                 <div className={styles.time}>
                     <FaRegClock />
                     <p>{creation_time} by {author}</p>
 
                 </div>
-                <div className="title">
+                <div className={styles.title}>
                     {title}
                 </div>
             </div>
             <div className={styles.colRight}>
-                <FaRegHeart style={{ color: "#DD0031", fontSize: "25px" }}
+                <FaRegHeart style={{ color: "#DD0031", fontSize: "25px", cursor: 'pointer' }}
 
                 />
             </div>

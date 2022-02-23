@@ -42,7 +42,7 @@ export class ListOfNews extends Component {
     getNews(page) {
 
         this.setState({ loading: true });
-        axios.get(`https://hn.algolia.com/api/v1/search_by_date?query=vuejs&page=${page}&hitsPerPage=8`)
+        axios.get(`https://hn.algolia.com/api/v1/search_by_date?query=vuejs&page=${page}&hitsPerPage=10`)
             .then(res => {
                 this.setState({
                     news: [...this.state.news, ...res.data.hits]
@@ -67,10 +67,21 @@ export class ListOfNews extends Component {
 
         return (
             <>
+                <div className={styles.filtersContainer}>
+                    <div className={styles.allAndFavs}>
+                        <div className={styles.active}>All</div>
+                        <div className={styles.myFavs}>My Faves</div>
+                    </div>
+                    <div className={styles.selectInput}>
+                        Select your news
+                    </div>
+
+
+                </div>
                 <div className={styles.newsContainer}>
 
                     {this.state.news.map(news => (
-                        <News id={news.objectID} title={news.story_title} creation_time={news.created_at} author={news.author} />
+                        <News key={news.objectID} title={news.story_title} creation_time={news.created_at} author={news.author} url={news.story_url} />
                     ))}
 
 
@@ -79,7 +90,7 @@ export class ListOfNews extends Component {
                     ref={loadingRef => (this.loadingRef = loadingRef)}
                     style={loadingCSS}
                 >
-                    <span style={loadingTextCSS}>Cargando Noticias...</span>
+                    <span className={styles.loadingTextCSS} style={loadingTextCSS}>Loading News...</span>
                 </div>
             </>
         )

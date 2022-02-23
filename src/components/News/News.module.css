@@ -1,12 +1,13 @@
  .cards {
-     margin: 10px;
+     margin: 20px;
      display: flex;
      flex-direction: row;
      width: 45%;
      height: 35%;
-
      border: solid 1px #979797;
      border-radius: 6px;
+     cursor: pointer;
+     background-color: #ffffff;
  }
 
  .colLeft {
@@ -32,4 +33,15 @@
 
  .time p {
      font-size: 11px;
+ }
+
+ .title {
+     font-weight: 400;
+ }
+
+ @media screen and (max-width: 800px) {
+     .cards {
+         width: 100%;
+     }
+
  }
