@@ -8,7 +8,7 @@ const News = ({ title, creation_time, author, url }) => {
         return '';
     }
     const handleClick = (url) => {
-        url ? window.open(url) : alert("This Article is not available right now");
+        window.open(url);
     }
     return (
         <div className={styles.cards} >

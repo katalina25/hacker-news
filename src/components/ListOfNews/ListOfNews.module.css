@@ -42,3 +42,7 @@
     border: solid 1px #1797ff;
     color: #1797ff;
 }
+
+.selectInput {
+    width: 20%;
+}

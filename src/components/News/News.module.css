@@ -10,6 +10,11 @@
      background-color: #ffffff;
  }
 
+ .cards:hover {
+     transition: 0.2s ease-out;
+     opacity: 0.6;
+ }
+
  .colLeft {
      padding: 30px 20px;
      width: 95%;
@@ -39,7 +44,7 @@
      font-weight: 400;
  }
 
- @media screen and (max-width: 800px) {
+ @media screen and (max-width: 1000px) {
      .cards {
          width: 100%;
      }
