@@ -5,27 +5,14 @@ import styles from './ListOfNews.module.css';
 import Select from 'react-select';
 import { FaAngular, FaReact, FaVuejs } from 'react-icons/fa';
 
-const options = [
-    {
-        value: 'angular', label: <>
-            <FaAngular style={{ color: "#DF0031", fontSize: "25px", paddingRight: "5px" }} />  Angular
-        </>
-    },
-    {
-        value: 'react', label: <>
-            <FaReact style={{ color: "#4FE7FD", fontSize: "25px", paddingRight: "5px" }} />  React
-        </>
-    },
-    {
-        value: 'vuejs', label: <>
-            <FaVuejs style={{ color: "#41B984", fontSize: "25px", paddingRight: "5px" }} />  Vuejs
-        </>
-    },
 
-]
+// const urlVue = "https://hn.algolia.com/api/v1/search_by_date?query=vuejs&hitsPerPage=10&page=";
+// const urlReact = "https://hn.algolia.com/api/v1/search_by_date?query=reactjs&hitsPerPage=10&page=";
+// const urlAngular = "https://hn.algolia.com/api/v1/search_by_date?query=angular&hitsPerPage=10&page=";
 
 
 export class ListOfNews extends Component {
+
 
     constructor() {
         super();
@@ -34,6 +21,7 @@ export class ListOfNews extends Component {
             loading: false,
             page: 0,
             prevY: 0,
+            url: 'https://hn.algolia.com/api/v1/search_by_date?query=vuejs&hitsPerPage=10&page='
         };
     }
     componentDidMount() {
@@ -64,7 +52,7 @@ export class ListOfNews extends Component {
     getNews(page) {
 
         this.setState({ loading: true });
-        axios.get(`https://hn.algolia.com/api/v1/search_by_date?query=vuejs&page=${page}&hitsPerPage=10`)
+        axios.get(`${this.state.url}${page}`)
             .then(res => {
                 this.setState({
                     news: [...this.state.news, ...res.data.hits]
@@ -76,7 +64,24 @@ export class ListOfNews extends Component {
 
 
     }
+    options = [
+        {
+            value: 'angular', label: <>
+                <FaAngular style={{ color: "#DF0031", fontSize: "25px", paddingRight: "5px" }} />  Angular
+            </>
+        },
+        {
+            value: 'react', label: <>
+                <FaReact style={{ color: "#4FE7FD", fontSize: "25px", paddingRight: "5px" }} />  React
+            </>
+        },
+        {
+            value: 'vuejs', label: <>
+                <FaVuejs style={{ color: "#41B984", fontSize: "25px", paddingRight: "5px" }} />  Vuejs
+            </>
+        },
 
+    ]
     render() {
 
 
@@ -95,27 +100,25 @@ export class ListOfNews extends Component {
                     </div>
                     <div className={styles.selectInput}>
 
-                        <Select options={options} />
+                        <Select options={this.options} />
                     </div>
 
 
                 </div>
                 <div className={styles.newsContainer}>
 
-                    {this.state.news.filter(function (news) {
-                        if (news.author && news.story_title && news.story_url && news.created_at) {
-                            return news;
-                        } else {
-                            return false;
-                        }
-                    })
-
-
-
-
+                    {this.state.news
+                        .filter(function (news) {
+                            if (news.author && news.story_title && news.story_url && news.created_at) {
+                                return news;
+                            } else {
+                                return false;
+                            }
+                        })
                         .map(news => (
                             <News key={news.objectID} title={news.story_title} creation_time={news.created_at} author={news.author} url={news.story_url} />
-                        ))}
+                        ))
+                    }
 
 
                 </div>

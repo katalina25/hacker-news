@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './News.module.css'
-import { FaRegClock, FaHeart, FaRegHeart } from 'react-icons/fa';
+import { FaRegClock, FaRegHeart } from 'react-icons/fa';
 
 
 const News = ({ title, creation_time, author, url }) => {
@@ -15,7 +15,7 @@ const News = ({ title, creation_time, author, url }) => {
             <div className={styles.colLeft} onClick={() => handleClick(url)}>
                 <div className={styles.time}>
                     <FaRegClock />
-                    <p>{creation_time} by {author}</p>
+                    <p>Created on {Date(creation_time)} by {author}</p>
 
                 </div>
                 <div className={styles.title}>
