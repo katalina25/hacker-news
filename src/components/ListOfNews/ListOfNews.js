@@ -6,10 +6,6 @@ import Select from 'react-select';
 import { FaAngular, FaReact, FaVuejs } from 'react-icons/fa';
 
 
-// const urlVue = "https://hn.algolia.com/api/v1/search_by_date?query=vuejs&hitsPerPage=10&page=";
-// const urlReact = "https://hn.algolia.com/api/v1/search_by_date?query=reactjs&hitsPerPage=10&page=";
-// const urlAngular = "https://hn.algolia.com/api/v1/search_by_date?query=angular&hitsPerPage=10&page=";
-
 
 export class ListOfNews extends Component {
 
@@ -21,11 +17,13 @@ export class ListOfNews extends Component {
             loading: false,
             page: 0,
             prevY: 0,
-            url: 'https://hn.algolia.com/api/v1/search_by_date?query=vuejs&hitsPerPage=10&page='
+            selectedOption: null,
+            url: "https://hn.algolia.com/api/v1/search_by_date?query=angular&hitsPerPage=10&page="
+
         };
     }
     componentDidMount() {
-        this.getNews(this.state.page);
+        this.getNews(this.state.page, this.state.url);
 
         var options = {
             root: null,
@@ -43,16 +41,16 @@ export class ListOfNews extends Component {
         const y = entities[0].boundingClientRect.y;
         if (this.state.prevY > y) {
             const curPage = this.state.page + 1;
-            this.getNews(curPage);
+            this.getNews(curPage, this.state.url);
             this.setState({ page: curPage });
         }
         this.setState({ prevY: y });
     }
 
-    getNews(page) {
+    getNews(page, url) {
 
         this.setState({ loading: true });
-        axios.get(`${this.state.url}${page}`)
+        axios.get(`${url}${page}`)
             .then(res => {
                 this.setState({
                     news: [...this.state.news, ...res.data.hits]
@@ -64,25 +62,36 @@ export class ListOfNews extends Component {
 
 
     }
+
+
+    handleChange = (selectedOption) => {
+        this.setState({ selectedOption }, () =>
+            this.setState({ news: [], url: selectedOption.value }),
+            this.getNews(0, selectedOption.value)
+        );
+    };
+
     options = [
         {
-            value: 'angular', label: <>
+            value: 'https://hn.algolia.com/api/v1/search_by_date?query=angular&hitsPerPage=10&page=', label: <>
                 <FaAngular style={{ color: "#DF0031", fontSize: "25px", paddingRight: "5px" }} />  Angular
             </>
         },
         {
-            value: 'react', label: <>
+            value: 'https://hn.algolia.com/api/v1/search_by_date?query=reactjs&hitsPerPage=10&page=', label: <>
                 <FaReact style={{ color: "#4FE7FD", fontSize: "25px", paddingRight: "5px" }} />  React
             </>
         },
         {
-            value: 'vuejs', label: <>
+            value: 'https://hn.algolia.com/api/v1/search_by_date?query=vuejs&hitsPerPage=10&page=', label: <>
                 <FaVuejs style={{ color: "#41B984", fontSize: "25px", paddingRight: "5px" }} />  Vuejs
             </>
         },
 
+
     ]
     render() {
+        const { selectedOption } = this.state;
 
 
         const loadingCSS = {
@@ -100,7 +109,11 @@ export class ListOfNews extends Component {
                     </div>
                     <div className={styles.selectInput}>
 
-                        <Select options={this.options} />
+                        <Select
+                            options={this.options}
+                            value={selectedOption}
+                            onChange={this.handleChange}
+                        />
                     </div>
 
 
