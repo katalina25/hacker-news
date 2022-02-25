@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import News from '../News/News';
+import Buttons from '../Buttons/Buttons'
 import axios from "axios";
-import styles from './ListOfNews.module.css';
 import Select from 'react-select';
+import styles from './ListOfNews.module.css';
 import { FaAngular, FaReact, FaVuejs } from 'react-icons/fa';
 
 
@@ -102,22 +103,17 @@ export class ListOfNews extends Component {
 
         return (
             <>
-                <div className={styles.filtersContainer}>
-                    <div className={styles.allAndFavs}>
-                        <div className={styles.active}>All</div>
-                        <div className={styles.myFavs}>My Faves</div>
-                    </div>
-                    <div className={styles.selectInput}>
+                <div className={styles.selectInput}>
 
-                        <Select
-                            options={this.options}
-                            value={selectedOption}
-                            onChange={this.handleChange}
-                        />
-                    </div>
-
-
+                    <Select
+                        options={this.options}
+                        value={selectedOption}
+                        onChange={this.handleChange}
+                    />
                 </div>
+
+
+
                 <div className={styles.newsContainer}>
 
                     {this.state.news

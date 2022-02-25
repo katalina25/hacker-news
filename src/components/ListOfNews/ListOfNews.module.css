@@ -12,37 +12,13 @@
     width: 100%;
 }
 
-.filtersContainer {
-    display: flex;
-    flex-direction: column;
-
-}
-
-.allAndFavs {
-    display: flex;
-    justify-content: center;
-    padding: 5px 10px;
-    width: fit-content;
-    margin: auto;
-}
-
-.allAndFavs * {
-    border: 1px solid #d6d6d6;
-    border-radius: 2px;
-    color: #606060;
-    padding: 5px 5px;
-    width: 120px;
-    text-align: center;
-    font-weight: bold;
-}
-
-
-
-.active {
-    border: solid 1px #1797ff;
-    color: #1797ff;
-}
-
 .selectInput {
     width: 20%;
+}
+
+@media screen and (max-width: 1000px) {
+    .selectInput {
+        width: 100%;
+    }
+
 }
