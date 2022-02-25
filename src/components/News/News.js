@@ -3,12 +3,15 @@ import styles from './News.module.css'
 import { FaRegClock, FaRegHeart } from 'react-icons/fa';
 
 
-const News = ({ title, creation_time, author, url }) => {
+const News = ({ title, creation_time, author, url, objectID }) => {
     if (!title) {
         return '';
     }
     const handleClick = (url) => {
         window.open(url);
+    }
+    const addFavorite = (id) => {
+        alert(id);
     }
     return (
         <div className={styles.cards} >
@@ -24,7 +27,7 @@ const News = ({ title, creation_time, author, url }) => {
             </div>
             <div className={styles.colRight}>
                 <FaRegHeart style={{ color: "#DD0031", fontSize: "25px", cursor: 'pointer' }}
-
+                    onClick={() => addFavorite(objectID)}
                 />
             </div>
         </div>

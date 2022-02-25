@@ -129,7 +129,7 @@ export class ListOfNews extends Component {
                             }
                         })
                         .map(news => (
-                            <News key={news.objectID} title={news.story_title} creation_time={news.created_at} author={news.author} url={news.story_url} />
+                            <News key={news.objectID} objectID={news.objectID} title={news.story_title} creation_time={news.created_at} author={news.author} url={news.story_url} />
                         ))
                     }
 
