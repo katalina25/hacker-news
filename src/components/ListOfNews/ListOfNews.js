@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import News from '../News/News';
-import Buttons from '../Buttons/Buttons'
 import axios from "axios";
 import Select from 'react-select';
 import styles from './ListOfNews.module.css';
@@ -74,19 +73,19 @@ export class ListOfNews extends Component {
 
     options = [
         {
-            value: 'https://hn.algolia.com/api/v1/search_by_date?query=angular&hitsPerPage=10&page=', label: <>
+            value: 'https://hn.algolia.com/api/v1/search_by_date?query=angular&hitsPerPage=10&page=', label: <div className={styles.option}>
                 <FaAngular style={{ color: "#DF0031", fontSize: "25px", paddingRight: "5px" }} />  Angular
-            </>
+            </div>
         },
         {
-            value: 'https://hn.algolia.com/api/v1/search_by_date?query=reactjs&hitsPerPage=10&page=', label: <>
+            value: 'https://hn.algolia.com/api/v1/search_by_date?query=reactjs&hitsPerPage=10&page=', label: <div className={styles.option}>
                 <FaReact style={{ color: "#4FE7FD", fontSize: "25px", paddingRight: "5px" }} />  React
-            </>
+            </div>
         },
         {
-            value: 'https://hn.algolia.com/api/v1/search_by_date?query=vuejs&hitsPerPage=10&page=', label: <>
+            value: 'https://hn.algolia.com/api/v1/search_by_date?query=vuejs&hitsPerPage=10&page=', label: <div className={styles.option}>
                 <FaVuejs style={{ color: "#41B984", fontSize: "25px", paddingRight: "5px" }} />  Vuejs
-            </>
+            </div>
         },
 
 
@@ -106,9 +105,11 @@ export class ListOfNews extends Component {
                 <div className={styles.selectInput}>
 
                     <Select
+                        className={styles.selectCom}
                         options={this.options}
                         value={selectedOption}
                         onChange={this.handleChange}
+                        placeholder={'Select your news...'}
                     />
                 </div>
 

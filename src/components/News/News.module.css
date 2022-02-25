@@ -1,13 +1,13 @@
  .cards {
-     margin: 20px;
      display: flex;
      flex-direction: row;
-     width: 45%;
+     width: 48%;
      height: 35%;
      border: solid 1px #979797;
      border-radius: 6px;
      cursor: pointer;
      background-color: #ffffff;
+     margin-bottom: 2rem;
  }
 
  .cards:hover {

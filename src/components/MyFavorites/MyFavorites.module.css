@@ -1,7 +1,9 @@
 .newsContainer {
+    margin-top: 8rem;
     display: flex;
     flex-direction: row;
     min-height: 800px;
     flex-wrap: wrap;
+    justify-content: space-between;
     width: 100%;
 }

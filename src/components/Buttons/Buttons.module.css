@@ -6,6 +6,10 @@
     margin: auto;
 }
 
+.filtersContainer {
+    margin: 3rem auto;
+}
+
 .allAndFavs .link * {
     border: 1px solid #d6d6d6;
     border-radius: 2px;
@@ -23,12 +27,12 @@
 }
 
 .allAndFavs *:hover {
-    border: solid 1px #1797ff;
+    outline: solid 1px #1797ff;
     transition: 0.4s ease-out;
 }
 
 
 .allAndFavs .link .active {
-    border: solid 1px #1797ff;
+    outline: solid 1px #1797ff;
     color: #1797ff;
 }
