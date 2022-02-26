@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import styles from './ListOfNews.module.css';
 import News from '../News/News';
 import axios from "axios";
 import Select from 'react-select';
-import styles from './ListOfNews.module.css';
 import { FaAngular, FaReact, FaVuejs } from 'react-icons/fa';
 
 
